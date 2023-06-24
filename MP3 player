@@ -1,0 +1,52 @@
+class MP3Player:
+    def __init__(self):
+        self.playlist = []
+        self.current_song = None
+        self.is_playing = False
+
+    def add_song(self, song):
+        self.playlist.append(song)
+        print(f"Added '{song}' to the playlist.")
+
+    def play(self):
+        if not self.playlist:
+            print("The playlist is empty. Add songs to the playlist first.")
+            return
+
+        if self.current_song is None or not self.is_playing:
+            self.current_song = self.playlist[0]
+            self.is_playing = True
+            print(f"Now playing: '{self.current_song}'")
+        else:
+            print("The MP3 player is already playing.")
+
+    def pause(self):
+        if self.is_playing:
+            self.is_playing = False
+            print(f"Paused: '{self.current_song}'")
+        else:
+            print("The MP3 player is already paused or no song is currently playing.")
+
+    def stop(self):
+        if self.is_playing:
+            self.current_song = None
+            self.is_playing = False
+            print("Stopped the MP3 player.")
+        else:
+            print("The MP3 player is already stopped or no song is currently playing.")
+
+
+# Example usage
+mp3_player = MP3Player()
+
+mp3_player.add_song("Song 1")
+mp3_player.add_song("Song 2")
+mp3_player.add_song("Song 3")
+
+mp3_player.play()  # Plays the first song in the playlist
+
+mp3_player.pause()  # Pauses the currently playing song
+
+mp3_player.play()  # Resumes playing the paused song
+
+mp3_player.stop()  # Stops the MP3 player
